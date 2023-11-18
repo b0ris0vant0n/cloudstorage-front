@@ -90,11 +90,62 @@ export const uploadFile = (formData) => {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-          
+        
         } catch (error) {
         console.error('Error downloading file:', error.message);
         }
+      console.log('File download successfully') 
       };
       };
   
-  
+export const renameFile = (fileId, newName) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('authorization');
+      const response = await fetch(`http://127.0.0.1:8000/api/files/rename/${fileId}`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ new_name: newName }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error renaming file: ${response.statusText}`);
+      }
+
+      dispatch(fetchFiles());
+
+      console.log('File renamed successfully');
+    } catch (error) {
+      console.error('Error renaming file:', error.message);
+    }
+  };
+};
+
+export const changeComment = (fileId, newComment) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('authorization');
+      const response = await fetch(`http://127.0.0.1:8000/api/files/comment/${fileId}`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ new_comment: newComment }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error change comment: ${response.statusText}`);
+      }
+
+      dispatch(fetchFiles());
+
+      console.log('Comment changed successfully');
+    } catch (error) {
+      console.error('Error changing comment:', error.message);
+    }
+  };
+};

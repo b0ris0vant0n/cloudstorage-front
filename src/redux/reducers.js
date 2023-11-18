@@ -8,12 +8,12 @@ const filesSlice = createSlice({
   },
   reducers: {
     fetchFilesSuccess: (state, action) => {
-      console.log('Data received in reducer:', action.payload);
+      // console.log('Data received in reducer:', action.payload);
       state.files = action.payload;
       state.error = null;
     },
     fetchFilesFailure: (state, action) => {
-      console.log('Error received in reducer:', action.payload); 
+      // console.log('Error received in reducer:', action.payload); 
       state.error = action.payload;
     },
   },
