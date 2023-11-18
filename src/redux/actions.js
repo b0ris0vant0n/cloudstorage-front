@@ -65,34 +65,36 @@ export const uploadFile = (formData) => {
         if (!response.ok) {
           throw new Error(`Error downloading file: ${response.statusText}`);
         }
-  
         const blob = await response.blob();
-  
+
         const contentDispositionHeader = response.headers.get('Content-Disposition');
         let filename;
-        const base64Encoded = 'YXR0YWNobWVudDsgZmlsZW5hbWU9ItCa0L3QuNCz0LAxLnhsc3gi';
-        const decoded = atob(base64Encoded);
-        console.log(decoded);
-        
-  
+
         if (contentDispositionHeader) {
-          filename = contentDispositionHeader.split(';')[1].trim().replace('filename=', '');
+          if (contentDispositionHeader.includes('=?utf-8?b?')) {
+            const base64Encoded = contentDispositionHeader.split('=?utf-8?b?')[1].split('?=')[0];
+            const contentDispositionHeaderDecode = new TextDecoder().decode(new Uint8Array(atob(base64Encoded).split('').map(c => c.charCodeAt(0))));;
+            filename = contentDispositionHeaderDecode.split(';')[1].trim().replace('filename=', '');
+          } else {
+            filename = contentDispositionHeader.split(';')[1].trim().replace('filename=', '');
+          }
         } else {
-          filename = 'fallback_filename.txt';
+          filename = 'fallback_filename';
           console.warn('Content-Disposition header is missing. Using fallback filename.');
         }
-  
+         
         const link = document.createElement('a');
         link.href = window.URL.createObjectURL(blob);
         link.download = filename;
-  
+          
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-  
-      } catch (error) {
+          
+        } catch (error) {
         console.error('Error downloading file:', error.message);
-      }
-    };
-  };
+        }
+      };
+      };
+  
   
