@@ -1,0 +1,23 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+const filesSlice = createSlice({
+  name: 'files',
+  initialState: {
+    files: [],
+    error: null,
+  },
+  reducers: {
+    fetchFilesSuccess: (state, action) => {
+      console.log('Data received in reducer:', action.payload);
+      state.files = action.payload;
+      state.error = null;
+    },
+    fetchFilesFailure: (state, action) => {
+      console.log('Error received in reducer:', action.payload); 
+      state.error = action.payload;
+    },
+  },
+});
+
+export const { fetchFilesSuccess, fetchFilesFailure } = filesSlice.actions;
+export default filesSlice.reducer;
