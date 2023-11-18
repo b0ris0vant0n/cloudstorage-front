@@ -149,3 +149,27 @@ export const changeComment = (fileId, newComment) => {
     }
   };
 };
+
+export const deleteFile = (fileId) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('authorization');
+      const response = await fetch(`http://127.0.0.1:8000/api/files/delete/${fileId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': token,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error deleting file: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('File deleted successfully:', data);
+      dispatch(fetchFiles());
+    } catch (error) {
+      console.error('Error deleting file:', error.message);
+    }
+  };
+};

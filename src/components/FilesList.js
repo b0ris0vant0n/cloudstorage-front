@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchFiles, downloadFile, renameFile, changeComment } from '../redux/actions';
+import { fetchFiles, downloadFile, renameFile, changeComment, deleteFile } from '../redux/actions';
 import ContextMenu from './ContextMenu';
 
 import '../css/FilesList.css';
@@ -37,6 +37,12 @@ const FilesList = () => {
     setSelectedFile(null);
   };
 
+  const handleDelete = () => {
+    if (selectedFile) {
+      dispatch(deleteFile(selectedFile.id));
+      setSelectedFile(null);
+    }
+  };
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
@@ -92,6 +98,7 @@ const FilesList = () => {
           onRename={handleRename}
           onChange={handleChange}
           onDownload={handleDownloadClick}
+          onDelete={handleDelete}
           position={contextMenuPosition}
         />
       )}
