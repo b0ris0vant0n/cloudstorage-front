@@ -4,7 +4,7 @@ export const fetchFiles = () => {
     return async (dispatch) => {
       try {
         const token = localStorage.getItem('authorization');
-  
+        console.log(token)
         const response = await fetch('http://127.0.0.1:8000/api/files/get-files/', {
           headers: {
             'Authorization': token,
@@ -19,7 +19,7 @@ export const fetchFiles = () => {
         console.log('Fetched data:', data)
         dispatch(fetchFilesSuccess(data));
       } catch (error) {
-        dispatch(fetchFilesFailure(error));
+        dispatch(fetchFilesFailure(error.message));
       }
     };
   };

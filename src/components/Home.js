@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../css/Home.css'
 
 function Home () {
   return (
-    <div>
-      <h1>My Cloud Storage</h1>
-      <p>сервис хранения файлов</p>
-      <Link to="/registration">Регистрация</Link>
+    <div className="home-container">
+      <h1 className="title">My Cloud Storage</h1>
+      <p className="description">Сервис хранения файлов</p>
+      <Link to="/registration" className="link">Регистрация</Link>
       <br />
-      <Link to="/login">Вход</Link>
+      <Link to="/login" className="link">Вход</Link>
     </div>
   );
 }

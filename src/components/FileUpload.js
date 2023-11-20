@@ -26,8 +26,8 @@ const FileUpload = () => {
   return (
     <div className='file-upload-container'>
       <h2>Загрузить файл в облако</h2>
-      <input class='file-input' type="file" onChange={handleFileChange} />
-      <button class='upload-button' onClick={handleUpload}>Загрузить</button>
+      <input className='file-input' type="file" onChange={handleFileChange} />
+      <button className='upload-button' onClick={handleUpload}>Загрузить</button>
     </div>
   );
 };

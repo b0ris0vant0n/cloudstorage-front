@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../css/RegistrationForm.css'
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form  className="register-form" onSubmit={handleSubmit}>
       <label>
         Username:
         <input
@@ -60,6 +61,7 @@ const RegistrationForm = () => {
           name="username"
           value={formData.username}
           onChange={handleChange}
+          className="input-field"
         />
       </label>
       <br />
@@ -70,6 +72,7 @@ const RegistrationForm = () => {
           name="fullName"
           value={formData.fullName}
           onChange={handleChange}
+          className="input-field"
         />
       </label>
       <br />
@@ -80,6 +83,7 @@ const RegistrationForm = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
+          className="input-field"
         />
       </label>
       <br />
@@ -90,10 +94,12 @@ const RegistrationForm = () => {
           name="password"
           value={formData.password}
           onChange={handleChange}
+          className="input-field"
         />
       </label>
       <br />
-      <button type="submit">Register</button>
+      <button type="submit" className="submit-button">Register</button>
+      
     </form>
   );
 };
