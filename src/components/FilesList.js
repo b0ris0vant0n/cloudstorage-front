@@ -80,7 +80,7 @@ const FilesList = () => {
           </thead>
           <tbody>
             {Array.isArray(files) && files.map((file) => (
-              <tr key={file.id}>
+              <tr className='table-string' key={file.id}>
                 <td
                   onClick={(event) => handleFileClick(file, event)}
                   style={{ cursor: 'pointer'}}

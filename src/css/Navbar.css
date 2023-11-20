@@ -1,17 +1,25 @@
 .navbar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 10px;
-    background-color: #f2f2f2;
+    background-color: #f0f0f0;
   }
   
   .logout-link {
     cursor: pointer;
-    color: #555;
+    color: #000000;
+    margin-right: 10px;
+  }
+
+  .current-username {
+    font-weight: 600;
+    color:#000000;
+    margin-left: 10px;
   }
   
   .logout-link:hover {
-    color: #000;
+    color: #484848;
     text-decoration: underline;
+
   }
   

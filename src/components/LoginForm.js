@@ -30,12 +30,13 @@ const LoginForm = () => {
         credentials: 'include',
       });
   
-      // Update state only if the response is OK
       if (response.ok) {
         console.log('Login successfully');
         const userData = await response.json();
         console.log(userData);
         localStorage.setItem('authorization', userData.authorization);
+        localStorage.setItem('currentuser', userData.currentuser)
+        
         if (userData.isAdmin) {
           window.location.href = 'http://127.0.0.1:8000/admin/';
         } else {
