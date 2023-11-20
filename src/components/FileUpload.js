@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { uploadFile } from '../redux/actions';
+import '../css/FileUpload.css'
 
 const FileUpload = () => {
   const dispatch = useDispatch();
@@ -23,10 +24,10 @@ const FileUpload = () => {
   };
 
   return (
-    <div>
+    <div className='file-upload-container'>
       <h2>Загрузить файл в облако</h2>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Загрузить</button>
+      <input class='file-input' type="file" onChange={handleFileChange} />
+      <button class='upload-button' onClick={handleUpload}>Загрузить</button>
     </div>
   );
 };

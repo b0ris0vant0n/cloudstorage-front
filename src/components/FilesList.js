@@ -66,7 +66,6 @@ const FilesList = () => {
             <tr>
               <th>Имя файла</th>
               <th>Размер (КБ)</th>
-              <th>Тип</th>
               <th>Комментарий</th>
               <th>Дата загрузки</th>
               <th>Последняя дата скачивания</th>
@@ -82,7 +81,6 @@ const FilesList = () => {
                   {file.name}
                 </td>
                 <td>{file.size / 1000} КБ</td>
-                <td>{shortenFileType(file.mime_type)}</td>
                 <td>{file.comment}</td>
                 <td>{formatDate(file.upload_date)}</td>
                 <td>{formatDate(file.last_download_date)}</td>
