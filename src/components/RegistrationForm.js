@@ -27,7 +27,7 @@ const RegistrationForm = () => {
         },
         full_name: formData.fullName,
         is_admin: false, 
-        storage_path: 'storage/{formData.username}/', // ????
+        storage_path: `storage/${formData.username}/`,
         email: formData.email,
       };
 

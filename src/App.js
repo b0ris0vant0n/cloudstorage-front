@@ -4,25 +4,27 @@ import Home from './components/Home';
 import Registration from './components/Registration';
 import Login from './components/Login';
 import Files from './components/Files';
-import { Provider } from 'react-redux';
-import store from './redux/store';
+import { useSelector } from 'react-redux'
+import PrivateRoute from './components/PrivateRoute';
+
 
 function App() {
   return (
-    <Provider store={store}>
-      <Router>
-        <div>
-          <Routes>
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/files" element={<Files />} />
-          </Routes>
-        </div>
-      </Router>
-    </Provider>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route exact path='/files' element={<PrivateRoute/>}>
+            <Route exact path='/files' element={<Files/>}/>
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
+
 
 export default App;
 

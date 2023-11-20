@@ -7,8 +7,8 @@ import '../css/FilesList.css';
 
 const FilesList = () => {
   const dispatch = useDispatch();
-  const files = useSelector((state) => state.files);
-  const loading = useSelector((state) => state.loading);
+  const files = useSelector((state) => state.files.files);
+  const loading = useSelector((state) => state.files.loading);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
@@ -72,7 +72,7 @@ const FilesList = () => {
             </tr>
           </thead>
           <tbody>
-            {files.map((file) => (
+            {Array.isArray(files) && files.map((file) => (
               <tr key={file.id}>
                 <td
                   onClick={(event) => handleFileClick(file, event)}

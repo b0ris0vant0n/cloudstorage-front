@@ -1,0 +1,17 @@
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: #f2f2f2;
+  }
+  
+  .logout-link {
+    cursor: pointer;
+    color: #555;
+  }
+  
+  .logout-link:hover {
+    color: #000;
+    text-decoration: underline;
+  }
+  
