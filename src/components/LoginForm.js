@@ -55,7 +55,7 @@ const LoginForm = () => {
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <label>
-        Username:
+        Логин:
         <input
           name="username"
           className="input-field-login-form"
@@ -66,7 +66,7 @@ const LoginForm = () => {
       </label>
       <br />
       <label>
-        Password:
+        Пароль:
         <input
           name="password"
           className="input-field-login-form"
@@ -76,7 +76,7 @@ const LoginForm = () => {
         />
       </label>
       <br />
-      <button type="submit" className="submit-button">Login</button>
+      <button type="submit" className="submit-button-login-form">Логин</button>
       {error && <div className="error-message">{error}</div>}
     </form>
   );

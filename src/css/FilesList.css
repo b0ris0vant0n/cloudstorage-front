@@ -6,6 +6,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-left: 20px;
+    border-radius: 4px;
   }
   
   th, td {
@@ -15,7 +16,8 @@ table {
   }
   
   .table-string:hover {
-    background-color: #f0f0f0;  }
+    background-color: rgb(210, 236, 254); 
+ }
 
 th:hover {
         background-color: initial;

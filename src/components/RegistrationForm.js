@@ -55,7 +55,7 @@ const RegistrationForm = () => {
   return (
     <form  className="register-form" onSubmit={handleSubmit}>
       <label>
-        Username:
+        Логин:
         <input
           type="text"
           name="username"
@@ -66,7 +66,7 @@ const RegistrationForm = () => {
       </label>
       <br />
       <label>
-        Full Name:
+        Имя и Фамилия:
         <input
           type="text"
           name="fullName"
@@ -88,7 +88,7 @@ const RegistrationForm = () => {
       </label>
       <br />
       <label>
-        Password:
+        Пароль:
         <input
           type="password"
           name="password"
@@ -98,7 +98,7 @@ const RegistrationForm = () => {
         />
       </label>
       <br />
-      <button type="submit" className="submit-button">Register</button>
+      <button type="submit" className="submit-button">Зарегистрироваться</button>
       
     </form>
   );
