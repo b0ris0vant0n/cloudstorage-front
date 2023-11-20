@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchFiles, downloadFile, renameFile, changeComment, deleteFile } from '../redux/actions';
+import { fetchFiles, downloadFile, renameFile, changeComment, deleteFile, shareFile } from '../redux/actions';
 import ContextMenu from './ContextMenu';
 
 import '../css/FilesList.css';
@@ -43,6 +43,13 @@ const FilesList = () => {
       setSelectedFile(null);
     }
   };
+
+  const handleShare = () => {
+    if (selectedFile) {
+      dispatch(shareFile(selectedFile.id))
+      setSelectedFile(null);
+    }
+  }
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
@@ -97,6 +104,7 @@ const FilesList = () => {
           onChange={handleChange}
           onDownload={handleDownloadClick}
           onDelete={handleDelete}
+          onShare={handleShare}
           position={contextMenuPosition}
         />
       )}
