@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { uploadFile } from '../redux/actions';
+import { uploadFile } from '../redux/filesActions';
 import '../css/FileUpload.css';
 
 const FileUpload = () => {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../redux/usersActions';
 
-import '../css/LoginForm.css'
+import '../css/LoginForm.css';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -19,36 +20,17 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/users/login/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-        credentials: 'include',
-      });
-  
-      if (response.ok) {
-        console.log('Login successfully');
-        const userData = await response.json();
-        console.log(userData);
-        localStorage.setItem('authorization', userData.authorization);
-        localStorage.setItem('currentuser', userData.currentuser)
-        
-        if (userData.isAdmin) {
-          window.location.href = 'http://127.0.0.1:8000/admin/';
-        } else {
-          navigate('/files');
-        }
+    const loginResult = await login(formData);
+
+    if (loginResult.success) {
+      console.log('Login successfully');
+      if (loginResult.isAdmin) {
+        navigate('/files');
       } else {
-        const errorData = await response.json();
-        setError(errorData.error);
+        navigate('/files');
       }
-    } catch (error) {
-      setError('An unexpected error occurred during login.');
-      console.error('Error during login:', error);
+    } else {
+      setError(loginResult.error);
     }
   };
 
@@ -76,11 +58,12 @@ const LoginForm = () => {
         />
       </label>
       <br />
-      <button type="submit" className="submit-button-login-form">Логин</button>
+      <button type="submit" className="submit-button-login-form">
+        Логин
+      </button>
       {error && <div className="error-message">{error}</div>}
     </form>
   );
 };
-
 
 export default LoginForm;

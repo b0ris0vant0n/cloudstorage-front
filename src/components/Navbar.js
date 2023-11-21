@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../redux/actions';
+import { logout } from '../redux/usersActions';
 import '../css/Navbar.css';
 import { current } from '@reduxjs/toolkit';
 

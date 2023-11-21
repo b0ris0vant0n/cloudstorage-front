@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchFiles, downloadFile, renameFile, changeComment, deleteFile, shareFile } from '../redux/actions';
+import { fetchFiles, downloadFile, renameFile, changeComment, deleteFile, shareFile } from '../redux/filesActions';
 import ContextMenu from './ContextMenu';
 
 import '../css/FilesList.css';

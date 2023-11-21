@@ -29,4 +29,11 @@
   .submit-button:hover {
     background-color: #6892ac;
   }
+
+  .error-message {
+    margin-top: 10px;
+    font-size: 12px;
+    color: red;
+    text-align: center;
+  }
   

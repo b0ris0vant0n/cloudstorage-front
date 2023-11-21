@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/RegistrationForm.css'
+import registerUser from '../redux/usersActions';
+
+import '../css/RegistrationForm.css';
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -10,6 +12,7 @@ const RegistrationForm = () => {
     email: '',
     password: '',
   });
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,36 +22,12 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const requestData = {
-        user: {
-          username: formData.username,
-          password: formData.password,
-          email: formData.email,
-        },
-        full_name: formData.fullName,
-        is_admin: false, 
-        storage_path: `storage/${formData.username}/`,
-        email: formData.email,
-      };
+    const registrationResult = await registerUser(formData);
 
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/users/register/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      console.log('User registered successfully');
-
+    if (registrationResult.success) {
       navigate('/login');
-    } catch (error) {
-      console.error('Error during registration:', error);
+    } else {
+      setError(registrationResult.error);
     }
   };
 
@@ -99,6 +78,7 @@ const RegistrationForm = () => {
       </label>
       <br />
       <button type="submit" className="submit-button">Зарегистрироваться</button>
+      {error && <div className="error-message">{error}</div>}
       
     </form>
   );
