@@ -141,3 +141,27 @@ export const deleteUser = (userId) => {
     }
   }
 };
+
+export const changeStatus = (userId) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('authorization');
+      const response = await fetch(`http://127.0.0.1:8000/api/users/status/${userId}`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': token,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error change status user: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('User status changed successfully:', data);
+      dispatch(fetchUsers());
+    } catch (error) {
+      console.error('User changing status:', error.message);
+    }
+  }
+}

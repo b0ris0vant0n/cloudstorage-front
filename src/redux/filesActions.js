@@ -1,11 +1,17 @@
 import { fetchFilesSuccess, fetchFilesFailure } from './filesReducers';
 
-export const fetchFiles = () => {
+export const fetchFiles = (userId) => {
     return async (dispatch) => {
       try {
         const token = localStorage.getItem('authorization');
-        console.log(token)
-        const response = await fetch('http://127.0.0.1:8000/api/files/get-files/', {
+        const isAdmin = localStorage.getItem('isAdmin') === 'true'
+
+        let url = 'http://127.0.0.1:8000/api/files/get-files/';
+
+        if (userId) {
+          url += `?user_id=${userId}`;
+        }
+        const response = await fetch(url, {
           headers: {
             'Authorization': token,
           },

@@ -5,17 +5,21 @@ import ContextMenu from './ContextMenu';
 
 import '../css/FilesList.css';
 
-const FilesList = () => {
+const FilesList = ({ userId }) => {
   const dispatch = useDispatch();
   const files = useSelector((state) => state.files.files);
   const loading = useSelector((state) => state.files.loading);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
-
+  console.log(userId)
   useEffect(() => {
-    dispatch(fetchFiles());
-  }, [dispatch]);
+    if (userId) {
+    dispatch(fetchFiles(userId));
+    } else { dispatch(fetchFiles()); }
+  }, [dispatch, userId]);
+
+  console.log('Files:', files);
 
   const handleFileClick = (file, event) => {
     setSelectedFile(file);

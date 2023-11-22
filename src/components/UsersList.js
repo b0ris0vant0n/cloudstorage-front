@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUsers, deleteUser } from '../redux/usersActions'
+import { fetchUsers, deleteUser, changeStatus } from '../redux/usersActions'
 
 import '../css/UsersList.css'
 
@@ -22,8 +22,7 @@ const UsersList = ({ onUserSelect }) => {
 
 
   const toggleAdminStatus = (userId) => {
-    // Здесь делайте запрос на сервер для изменения признака «администратор»
-    // Обновите состояние users после успешного изменения
+    dispatch(changeStatus(userId));
   };
 
   return (

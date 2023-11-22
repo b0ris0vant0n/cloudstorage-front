@@ -20,7 +20,7 @@ const Files = () => {
       <Navbar />
       {isAdmin && <UsersList onUserSelect={handleUserSelect} />}
       {selectedUser ? (
-        <div>
+        <div key={selectedUser.id}>
           <h2>{`Файлы пользователя ${selectedUser.username}`}</h2>
           <FilesList userId={selectedUser.id} />
         </div>
@@ -29,7 +29,7 @@ const Files = () => {
           <FilesList />
         </div>
       )}
-      <FileUpload />
+      {!selectedUser && <FileUpload />}
     </div>
   );
 };
