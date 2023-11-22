@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import filesReducers from './filesReducers'; 
-import userReducers from './userReducers';
+import userReducers from './usersReducers';
 import thunk from 'redux-thunk';
 
 const store = configureStore({

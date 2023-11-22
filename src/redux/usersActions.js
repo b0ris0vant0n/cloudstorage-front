@@ -1,3 +1,29 @@
+import { fetchUsersSuccess, fetchUsersFailure } from './usersReducers';
+
+export const fetchUsers = () => {
+    return async (dispatch) => {
+      try {
+        const token = localStorage.getItem('authorization');
+        console.log(token)
+        const response = await fetch('http://127.0.0.1:8000/api/users/get-users', {
+          headers: {
+            'Authorization': token,
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error(`Error fetching users: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log('Fetched data:', data)
+        dispatch(fetchUsersSuccess(data));
+      } catch (error) {
+        dispatch(fetchUsersFailure(error.message));
+      }
+    };
+  };
+
 export const registerUser = async (formData) => {
     try {
       const requestData = {

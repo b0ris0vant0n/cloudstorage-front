@@ -1,0 +1,38 @@
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 12px;
+  }
+  
+  .users-table th, .users-table td {
+    border: no-border;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .users-table th {
+    background-color: #5083ea;
+  }
+  
+  .users-table button {
+    font-size: 8px;
+    background-color: #4c5caf;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 6px;
+    border-radius: 3px;
+  }
+  
+  .users-table button:hover {
+    background-color: #5083ea;
+  }
+  
+  tbody td:nth-child(1) { width: 15%; }
+  tbody td:nth-child(2) { width: 10%; }
+  tbody td:nth-child(3) { width: 15%; } 
+  tbody td:nth-child(4) { width: 12%; } 
+  tbody td:nth-child(5) { width: 12%; } 
+  tbody td:nth-child(6) { width: 12%; } 

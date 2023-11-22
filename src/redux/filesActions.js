@@ -16,7 +16,7 @@ export const fetchFiles = () => {
         }
         
         const data = await response.json();
-        console.log('Fetched data:', data)
+        console.log('Fetched data files:', data)
         dispatch(fetchFilesSuccess(data));
       } catch (error) {
         dispatch(fetchFilesFailure(error.message));
