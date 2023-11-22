@@ -9,11 +9,14 @@ const userSlice = createSlice({
     isAdmin: false,
     },
   reducers: {
-    loginSuccess: (state) => {
+    loginSuccess: (state, action) => {
       state.isAuthenticated = true;
+      state.isAdmin = action.payload.isAdmin; 
     },
     logoutSuccess: (state) => {
       state.isAuthenticated = false;
+      state.isAdmin = false; 
+
     },
     fetchUsersSuccess: (state, action) => {
       console.log('Data received in reducer:', action.payload);

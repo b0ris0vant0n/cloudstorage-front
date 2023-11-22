@@ -81,7 +81,8 @@ export const login = async (formData) => {
         const userData = await response.json();
         localStorage.setItem('authorization', userData.authorization);
         localStorage.setItem('currentuser', userData.currentuser);
-        return { success: true, isAdmin: userData.isAdmin };
+        localStorage.setItem('isAdmin', userData.isAdmin)
+        return { success: true };
       } else {
         const errorData = await response.json();
         return { success: false, error: errorData.error };

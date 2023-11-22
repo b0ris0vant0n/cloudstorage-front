@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/usersActions';
+import { loginSuccess } from '../redux/usersReducers';
+import { useDispatch } from 'react-redux'
 
 import '../css/LoginForm.css';
 
 const LoginForm = () => {
+  const dispatch = useDispatch(); 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
@@ -25,6 +28,8 @@ const LoginForm = () => {
     if (loginResult.success) {
       console.log('Login successfully');
       if (loginResult.isAdmin) {
+        const isAdmin = true;
+        dispatch(loginSuccess({ isAdmin }));
         navigate('/files');
       } else {
         navigate('/files');

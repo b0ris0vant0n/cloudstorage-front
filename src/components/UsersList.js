@@ -4,7 +4,7 @@ import { fetchUsers, } from '../redux/usersActions'
 
 import '../css/UsersList.css'
 
-const UsersList = ({ onUserSelect, isAdmin }) => {
+const UsersList = ({ onUserSelect }) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users.users);
 //   const loading = useSelector((state) => state.users.loading);
@@ -14,7 +14,6 @@ const UsersList = ({ onUserSelect, isAdmin }) => {
   useEffect(() => {
     console.log('Effect started');
     dispatch(fetchUsers());
-    console.log('isAdmin:', isAdmin); 
   }, [dispatch]);
   
   console.log('Users:', users);
