@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUsers, } from '../redux/usersActions'
+import { fetchUsers, deleteUser } from '../redux/usersActions'
 
 import '../css/UsersList.css'
 
 const UsersList = ({ onUserSelect }) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users.users);
-//   const loading = useSelector((state) => state.users.loading);
-
   const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
@@ -18,10 +16,10 @@ const UsersList = ({ onUserSelect }) => {
   
   console.log('Users:', users);
 
-  const deleteUser = (userId) => {
-    // Здесь делайте запрос на сервер для удаления пользователя
-    // Обновите состояние users после успешного удаления
-  };
+  const handleDeleteUser = (userId) => {
+      dispatch(deleteUser(userId));
+}
+
 
   const toggleAdminStatus = (userId) => {
     // Здесь делайте запрос на сервер для изменения признака «администратор»
@@ -51,7 +49,7 @@ const UsersList = ({ onUserSelect }) => {
               <td>{user.is_admin ? 'Администратор' : 'Обычный пользователь'}</td>
               {(
                 <td>
-                  <button onClick={() => deleteUser(user.id)}>Удалить</button>
+                  <button onClick={() => handleDeleteUser(user.id)}>Удалить</button>
                   <button onClick={() => toggleAdminStatus(user.id)}>
                     {user.is_admin ? 'Сделать обычным' : 'Сделать администратором'}
                   </button>
