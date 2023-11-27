@@ -1,4 +1,5 @@
 import { fetchFilesSuccess, fetchFilesFailure } from './filesReducers';
+import apiUrl from '../apiConfig'
 
 export const fetchFiles = (userId) => {
     return async (dispatch) => {
@@ -6,7 +7,7 @@ export const fetchFiles = (userId) => {
         const token = localStorage.getItem('authorization');
         const isAdmin = localStorage.getItem('isAdmin') === 'true'
 
-        let url = 'http://127.0.0.1:8000/api/files/get-files/';
+        let url = `${apiUrl}/api/files/get-files/`;
 
         if (userId) {
           url += `?user_id=${userId}`;
@@ -36,7 +37,7 @@ export const uploadFile = (formData) => {
       try {
         const token = localStorage.getItem('authorization');
   
-        const response = await fetch('http://127.0.0.1:8000/api/files/upload/', {
+        const response = await fetch(`${apiUrl}/api/files/upload/`, {
           method: 'POST',
           headers: {
             'Authorization': token,
@@ -61,7 +62,7 @@ export const uploadFile = (formData) => {
     return async (dispatch) => {
       try {
         const token = localStorage.getItem('authorization');
-        const response = await fetch(`http://127.0.0.1:8000/api/files/download/${fileId}`, {
+        const response = await fetch(`${apiUrl}/api/files/download/${fileId}`, {
           method: 'GET',
           headers: {
             'Authorization': token,
@@ -108,7 +109,7 @@ export const renameFile = (fileId, newName) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('authorization');
-      const response = await fetch(`http://127.0.0.1:8000/api/files/rename/${fileId}`, {
+      const response = await fetch(`${apiUrl}/api/files/rename/${fileId}`, {
         method: 'PATCH',
         headers: {
           'Authorization': token,
@@ -134,7 +135,7 @@ export const changeComment = (fileId, newComment) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('authorization');
-      const response = await fetch(`http://127.0.0.1:8000/api/files/comment/${fileId}`, {
+      const response = await fetch(`${apiUrl}/api/files/comment/${fileId}`, {
         method: 'PATCH',
         headers: {
           'Authorization': token,
@@ -160,7 +161,7 @@ export const deleteFile = (fileId) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('authorization');
-      const response = await fetch(`http://127.0.0.1:8000/api/files/delete/${fileId}`, {
+      const response = await fetch(`${apiUrl}/api/files/delete/${fileId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': token,
@@ -184,7 +185,7 @@ export const shareFile = (fileId) => {
   return async(dispatch) => {
     try {
       const token = localStorage.getItem('authorization');
-      const response = await fetch(`http://127.0.0.1:8000/api/files/share/${fileId}`, {
+      const response = await fetch(`${apiUrl}/api/files/share/${fileId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

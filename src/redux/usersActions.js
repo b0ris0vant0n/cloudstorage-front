@@ -1,11 +1,12 @@
 import { fetchUsersSuccess, fetchUsersFailure } from './usersReducers';
+import apiUrl from '../apiConfig'
 
 export const fetchUsers = () => {
     return async (dispatch) => {
       try {
         const token = localStorage.getItem('authorization');
         console.log(token)
-        const response = await fetch('http://127.0.0.1:8000/api/users/get-users', {
+        const response = await fetch(`${apiUrl}/api/users/get-users`, {
           headers: {
             'Authorization': token,
           },
@@ -34,11 +35,11 @@ export const registerUser = async (formData) => {
         },
         full_name: formData.fullName,
         is_admin: false,
-        storage_path: `storage/${formData.username}/`,
+        storage_path: `${formData.username}/`,
         email: formData.email,
       };
   
-      const response = await fetch('http://127.0.0.1:8000/api/users/register/', {
+      const response = await fetch(`${apiUrl}/api/users/register/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,7 +69,7 @@ export default registerUser;
 
 export const login = async (formData) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/users/login/', {
+      const response = await fetch(`${apiUrl}/api/users/login/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -99,7 +100,7 @@ export const logout = () => {
       try {
         const token = localStorage.getItem('authorization');
   
-        const response = await fetch('http://127.0.0.1:8000/api/users/logout', {
+        const response = await fetch(`${apiUrl}/api/users/logout`, {
           method: 'GET',
           headers: {
             'Authorization': token,
@@ -122,7 +123,7 @@ export const deleteUser = (userId) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('authorization');
-      const response = await fetch(`http://127.0.0.1:8000/api/users/delete/${userId}`, {
+      const response = await fetch(`${apiUrl}/api/users/delete/${userId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': token,
@@ -146,7 +147,7 @@ export const changeStatus = (userId) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('authorization');
-      const response = await fetch(`http://127.0.0.1:8000/api/users/status/${userId}`, {
+      const response = await fetch(`${apiUrl}/api/users/status/${userId}`, {
         method: 'PATCH',
         headers: {
           'Authorization': token,
